@@ -39,7 +39,6 @@ Things you may want to cover:
 - has_many :comments
 - has_one :profile
 
-
 ## profile テーブル
 
 | Column              | Type         | Options     |
@@ -56,7 +55,6 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :users
-
 
 ## items テーブル
 
@@ -80,7 +78,6 @@ Things you may want to cover:
 - has_one :address
 - belongs_to :users
 
-
 ## comments テーブル
 
 | Column  | Type       | Options     |
@@ -94,7 +91,6 @@ Things you may want to cover:
 - belongs_to :users
 - belongs_to :items
 
-
 ## buy テーブル
 
 | Column        | Type       | Options     |
@@ -107,7 +103,6 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :items
-
 
 ## address テーブル
 
