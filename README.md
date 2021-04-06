@@ -22,53 +22,40 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-# テーブル設計
 
-## users テーブル
+# table design
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| nickname | string | null: false |
-| email    | string | null: false |
-| password | string | null: false |
+## users table
+
+| Column              | Type         | Options                  |
+| ------------------- | ------------ | ------------------------ |
+| nickname            | string       | null: false              |
+| email               | string       | null: false, unique: true|
+| encrypted_password  | string       | null: false              |
+| last_name           | string       | null: false              |
+| first_name          | string       | null: false              |
+| last_name_katakana  | string       | null: false              |
+| first_name_katakana | string       | null: false              |
+| birthday            | date         | null: false              |
 
 ### Association
 
 - has_many :items
 - has_many :comments
-- has_one :profile
 
-## profile テーブル
+## items table
 
-| Column              | Type         | Options     |
-| ------------------- | ------------ | ----------- |
-| last_name           | string       | null: false |
-| first_name          | string       | null: false |
-| last_name_katakana  | string       | null: false |
-| first_name_katakana | string       | null: false |
-| birthday_year       | date         | null: false |
-| birthday_month      | date         | null: false |
-| birthday_day        | date         | null: false |
-| user                | references   |             |
-
-### Association
-
-- belongs_to :users
-
-## items テーブル
-
-| Column            | Type       | Options     |
-| ----------------- | ---------- | ----------- |
-| item_name         | string     | null: false |
-| item_image        | string     | null: false |
-| price             | integer    | null: false |
-| item_info         | text       | null: false |
-| category          | string     | null: false |
-| syouhin_joutai    | string     | null: false |
-| haisou_hutan      | string     | null: false |
-| haisoumoto_chiiki | string     | null: false |
-| haisou_meyasu     | string     | null: false |
-| user              | references |             |
+| Column                | Type       | Options     |
+| --------------------- | ---------- | ----------- |
+| product_name          | string     | null: false |
+| price                 | integer    | null: false |
+| product_info          | text       | null: false |
+| category_id           | integer    | null: false |
+| product_status_id     | integer    | null: false |
+| delivery_burden_id    | integer    | null: false |
+| delivery_area_id      | integer    | null: false |
+| estimated_delivery_id | integer    | null: false |
+| user_id               | references |             |
 
 ### Association
 
@@ -77,7 +64,7 @@ Things you may want to cover:
 - has_one :address
 - belongs_to :users
 
-## comments テーブル
+## comments table
 
 | Column  | Type       | Options     |
 | ------- | ---------- | ----------- |
@@ -90,31 +77,29 @@ Things you may want to cover:
 - belongs_to :users
 - belongs_to :items
 
-## buy テーブル
+## buy table
+
+| Column | Type       | Options |
+| ------ | ---------- | ------- |
+| item   | references |         |
+
+### Association
+
+- belongs_to :item
+- has_one :address
+
+## address table
 
 | Column        | Type       | Options     |
 | ------------- | ---------- | ----------- |
-| card_number   | integer    | null: false |
-| yuukou_kigen  | integer    | null: false |
-| security_code | integer    | null: false |
-| item          | references |             |
+| postal_code   | string     | null: false |
+| prefecture_id | integer    | null: false |
+| municipality  | string     | null: false |
+| house_number  | string     | null: false |
+| building      | string     |             |
+| phone         | string     | null: false |
+| buy           | references |             |
 
 ### Association
 
-- belongs_to :items
-
-## address テーブル
-
-| Column       | Type       | Options     |
-| ------------ | ---------- | ----------- |
-| postal_code  | integer    | null: false |
-| prefecture   | string     | null: false |
-| municipality | string     | null: false |
-| banchi       | string     | null: false |
-| tatemono     | string     | null: false |
-| phone        | integer    | null: false |
-| item         | references |             |
-
-### Association
-
-- belongs_to :items
+- belongs_to :buy
