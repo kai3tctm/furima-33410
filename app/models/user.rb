@@ -8,7 +8,10 @@ class User < ApplicationRecord
   # has_many :comments
   # has_many :buys
 
-  validates :nickname, presence: true
+  with_options presence: true do
+    validates :nickname
+    validates :birthday
+  end
   validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: 'パスワードには英字と数字の両方を含めて設定してください' }
   with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: '全角文字を使用してください' } do
     validates :first_name
@@ -18,5 +21,4 @@ class User < ApplicationRecord
     validates :first_name_katakana
     validates :last_name_katakana
   end
-  validates :birthday, presence: true
 end
