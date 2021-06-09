@@ -61,8 +61,14 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
+- belongs_to :category
+- belongs_to :product_status
+- belongs_to :delivery_burden
+- belongs_to :delivery_area
+- belongs_to :estimated_delivery
 - has_many :comments
 - has_one :buy
+- has_one_attached :image
 
 ## comments table
 

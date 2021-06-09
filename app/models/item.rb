@@ -6,8 +6,9 @@ class Item < ApplicationRecord
   belongs_to :delivery_burden
   belongs_to :delivery_area
   belongs_to :estimated_delivery
-  # has_many :comments
-  # has_one :buy
+  has_many :comments
+  has_one :buys
+  has_one :address
   has_one_attached :image
 
   with_options presence: true do
